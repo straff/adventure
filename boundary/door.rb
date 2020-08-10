@@ -5,20 +5,21 @@ class Door < BoundaryObject
   attr_accessor :door_state
   attr_accessor :lock_state
   
-  def initialize type, door_state, lock_state, end_boundary = false
-    @door_state = door_state
+  def initialize description:, lock_state: :locked, end_boundary: false
+    @description = description
+    @door_state = :closed
     @lock_state = lock_state
     @end_boundary = end_boundary
-    super type, "a #{type} door"
   end
   
   def open place, quester
-    puts 'door is locked' if locked?
+    return 'door is locked' if locked?
     if unlocked?
       if closed?
-        @door_state = :open 
+        @door_state = :open
+		return 'door creaks open'
       else 
-        puts 'door is already open'
+        return 'door is already open'
       end
     end
     dbg "door state #{door_state}"
@@ -26,51 +27,47 @@ class Door < BoundaryObject
   def close place, quester
     if open?
       @door_state = :closed
+	  return 'door creaks closed'
     else 
-      puts 'door is already closed'
+      return 'door is already closed'
     end
     dbg "door state #{door_state}"
   end
   
   def unlock place, quester
-    puts 'unlocking door ...'
+    return 'unlocking door ...'
     if closed?
       if locked?
         if not quester.possessions[:key]
-          puts 'you dont have a key'
-          return
+          return 'you dont have a key'
         end
         @lock_state = :unlocked
-        puts 'unlocked'
+        return 'door unlocks'
       else
-        puts 'already unlocked'
+        return 'door already unlocked'
       end
     else
-      puts 'is not closed'
+      return 'door is not closed'
     end
   end
   
   def lock place, quester
-    puts 'locking door ...'
     if closed?
       if unlocked?
         if not quester.possessions[:key]
-          puts 'you dont have a key'
-          return
+          return 'you dont have a key'
         end
         @lock_state = :locked
-        puts 'locked'
+        return 'door is now locked'
       else
-        puts 'already locked'
+        return 'door is already locked'
       end
     else
-      puts 'is open'
+      return 'cant lock an open door'
     end
   end
   
   def closed?
-    #puts '*** Testing *** - all doors set open'
-    #return false
     return true if @door_state == :closed
     return false
   end

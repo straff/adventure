@@ -51,13 +51,19 @@ while true
   facing_boundary = quester.facing_boundary ? quester.facing_boundary : facing_boundary
   current_place = quester.place
   
-  show_debug current_place, facing_boundary, quester
+  #show_debug current_place, facing_boundary, quester
   
-  puts "\nYou are in #{quester.place.type} facing #{quester.facing_direction}. You see #{facing_boundary} "
+  puts "\nYou are in #{quester.place.description} facing #{quester.facing_direction}. You see #{facing_boundary.description} "
   current_place.auto_action_fixtures
   
   quester.look
-  current_place.look
+  puts "To the North is #{current_place.north_boundary}"
+  puts "To the East  is #{current_place.east_boundary}"
+  puts "To the South is #{current_place.south_boundary}"
+  puts "To the West  is #{current_place.west_boundary}"
+  puts 'The following items are here:' if current_place.items.count > 0 or current_place.fixtures.count > 0
+  current_place.items.each_pair {| item,value | puts "\t#{value.to_s} #{value.status_description}" }
+  current_place.fixtures.each_pair {| fixture,value | puts "\t#{value.to_s} #{value.status_description}" }
   
   puts "---------------------------\n"
   response = STDIN.gets.chomp
@@ -66,11 +72,40 @@ while true
   if 'help'.match("^#{response}"); show_help; next; end
   
   action, object = get_action_object response # including aliasing
+  dbg "action #{action}, object #{object}"
   
-  # first check if objects will respond to 'action' for 'object'
-  quester.send(action.to_sym, object, current_place) if quester.respond_to? action.to_sym
-  current_place.send(action.to_sym, object) if current_place.respond_to? action.to_sym
-  facing_boundary.send(action.to_sym, current_place, quester) if facing_boundary.respond_to? action.to_sym
+  dbg 'quester processing'
+  if quester.respond_to? action.to_sym
+    quester_action_response = quester.send(action.to_sym, object, current_place)
+	puts quester_action_response
+	quester_responded = true
+  else
+    dbg "quester did not respond - #{quester.name}"
+	quester_responded = false
+  end
+    
+  
+  dbg 'current_place processing'
+  if current_place.respond_to? action.to_sym
+    place_action_result = current_place.send(action.to_sym, object) 
+    puts place_action_result
+	current_place_responded = true
+  else
+    dbg "current_place did not respond - #{current_place.description}" 
+	current_place_responded = false
+  end
+  
+  dbg 'facing_boundary'
+  if facing_boundary.respond_to? action.to_sym
+    facing_boundary_action_results = facing_boundary.send(action.to_sym, current_place, quester) 
+	puts facing_boundary_action_results
+	facing_boundary_responded = true
+  else
+    dbg "facing_boundary did not respond - #{facing_boundary.description}" 
+    facing_boundary_responded = false
+  end
+  
+  puts "#{action} is not a known action" if not quester_responded and not current_place_responded and not facing_boundary_responded
   
   if mission.complete?
     puts 'Well done, you completed your mission'

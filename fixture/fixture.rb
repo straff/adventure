@@ -5,7 +5,7 @@ class Fixture
   attr_reader :status_description
   #attr_accessor :achieved
   
-  def initialize name
+  def initialize name:
     @name = name
     @status_description = ''
     @achieved = false

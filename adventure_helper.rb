@@ -26,7 +26,7 @@ module AdventureHelper
     action = 'move' if 'move'.match("^#{action}") or 'go'.match("^#{action}") or 'walk'.match("^#{action}$") or 'run'.match("^#{action}$")
     action = 'get' if 'take'.match("^#{action}$") or 'grab'.match("^#{action}$") or 'pickup'.match("^#{action}")
     action = 'look' if 'see'.match("^#{action}$") or 'spy'.match("^#{action}$")
-    action = 'north' if 'north'.match("^#{action}")
+    (object = action; action = 'move') if compass_direction? compass_point: object
     action = 'south' if 'south'.match("^#{action}")
     action = 'east' if 'east'.match("^#{action}")
     action = 'west' if 'west'.match("^#{action}")
@@ -36,6 +36,12 @@ module AdventureHelper
     action = 'wash' if 'clean'.match("^#{action}")
     return action, object
   end
+  
+  def compass_direction? compass_point:
+    return false if compass_point.nil?
+    return true if compass_point.match('north') or compass_point.match('south') or compass_point.match('east') or compass_point.match('west')
+	return false
+  end	
     
   def dbg (msg)
     if DBG

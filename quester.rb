@@ -26,13 +26,13 @@ class Quester
     if place.respond_to? ("#{@facing_direction}_boundary".to_sym)
       return place.send("#{@facing_direction}_boundary".to_sym)
     else
-      puts "can't go there"
+      return "can't go there"
     end
   end
   
   # get an object
   def get object, current_place
-    (puts 'get what?';return) if not object 
+    return 'get what?' if not object 
     if current_place.items[object.to_sym]
       @possessions[object.to_sym] = current_place.items[object.to_sym]
       current_place.items.delete object.to_sym
@@ -42,12 +42,12 @@ class Quester
       #end
     else
       if @possessions[object.to_sym]
-        puts "you already have #{object}"
+        return "you already have #{object}"
       else
         if current_place.fixtures[object.to_sym]
-          puts "you can not pick up #{object}"
+          return "you can not pick up #{object}"
         else
-          puts "there is no #{object} here"
+          return "there is no #{object} here"
         end
       end
     end
@@ -59,7 +59,7 @@ class Quester
       @possessions[object.to_sym].achieved = false
       @possessions.delete object.to_sym
     else
-      puts "you don't have #{object}"
+      return "you don't have #{object}"
     end
   end
   
@@ -86,7 +86,7 @@ class Quester
    
  
   def move object, current_place
-    if facing_boundary.can_move?
+    if facing_boundary.can_move_through?
       @place = @place.send("#{facing_direction}_location".to_sym)
     else
       puts facing_boundary.no_move_reason
@@ -94,32 +94,32 @@ class Quester
   end 
 
   def north object, current_place
-    dbg "quester#north object #{object} current_place #{current_place}"
+    dbg "quester#north, object #{object}, current_place #{current_place}"
     @facing_direction = @directions[:north]
   end
   def south object, current_place
-    dbg "quester#south object #{object} current_place #{current_place}"
+    dbg "quester#south, object #{object}, current_place #{current_place}"
     @facing_direction = @directions[:south]
   end
   def east object, current_place
-    dbg "quester#east object #{object} current_place #{current_place}"
+    dbg "quester#east, object #{object}, current_place #{current_place}"
     @facing_direction = @directions[:east]
   end
   def west object, current_place
-    dbg "quester#west object #{object} current_place #{current_place}"
+    dbg "quester#west, object #{object}, current_place #{current_place}"
     @facing_direction = @directions[:west]
   end
   
   def around object, current_place
-    dbg "quester#around object #{object} current_place #{current_place}"
+    dbg "quester#around, object #{object}, current_place #{current_place}"
     @facing_direction = @directions[@compass_points[@facing_direction]-2]
   end
   def left object, current_place
-    dbg "quester#left object #{object} current_place #{current_place}"
+    dbg "quester#left, object #{object}, current_place #{current_place}"
     @facing_direction = @directions[@compass_points[@facing_direction]+1]
   end
   def right object, current_place
-    dbg "quester#right object #{object} current_place #{current_place}"
+    dbg "quester#right, object #{object}, current_place #{current_place}"
     @facing_direction = @directions[@compass_points[@facing_direction]-1]
   end
   

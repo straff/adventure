@@ -1,20 +1,13 @@
 require './boundary/boundary_object.rb'
 
 class Wall < BoundaryObject
-
-  attr_accessor :colour
   
-  def initialize( type, colour )
-    @colour = colour
-    super type, "a #{colour} #{type} wall"
+  def initialize( description:, end_boundary: true )
+    @description = description
+	@end_boundary = end_boundary
   end
-  
-  def can_move?
-    return false
-  end
-  
   def no_move_reason
-    return 'hmmm ... this is a wall'
+    return "caarunch ... you bumped into a solid wall"
   end
   
 end

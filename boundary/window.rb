@@ -5,30 +5,32 @@ class Window < BoundaryObject
   attr_accessor :window_state
   attr_accessor :lock_state
   
-  def initialize type, window_state, lock_state, end_boundary = false
-    @window_state = window_state
-    @lock_state = lock_state
+  def initialize description:, end_boundary: false
+    @description = description
+    @window_state = :closed
+    @lock_state = :locked
     @end_boundary = end_boundary
-    super type, 'a window'
   end
   
   def open place, quester
     if closed?
       if place.inside?
-        @window_state = :open 
+        @window_state = :open
+		return 'the window creaks, and opens'
       else 
-        puts 'can not open window from ouside'
+        return 'can not open window from outside'
       end
     else 
-      puts 'window is already open'
+      return 'window is already open'
     end
     dbg "window state #{window_state}"
   end
   def close place, quester
     if open?
       @window_state = :closed
+	  return 'the window closes'
     else 
-      puts 'window is already closed'
+      return 'window is already closed'
     end
     dbg "window state #{window_state}"
   end

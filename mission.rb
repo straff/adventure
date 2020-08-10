@@ -20,8 +20,8 @@ class Mission
   end
   
   def complete?
-    dbg "@mission_elements #{@mission_elements}"
-    dbg "@fixtures.items #{@fixtures.items}"
+    #dbg "@mission_elements #{@mission_elements}"
+    #dbg "@fixtures.items #{@fixtures.items}"
     mission_elements_achieved = 0
     @questers.each do | quester |
       @mission_elements.each do | mission_element |
@@ -34,8 +34,8 @@ class Mission
         mission_elements_achieved += 1 if fixture_item_name == mission_element and fixture_item.achieved?
       end
     end
-    dbg "mission_elements_achieved #{mission_elements_achieved}"
-    dbg "@mission_elements.count #{@mission_elements.count}"
+    #dbg "mission_elements_achieved #{mission_elements_achieved}"
+    #dbg "@mission_elements.count #{@mission_elements.count}"
     return true if @mission_elements.count == mission_elements_achieved
     return false
   end
