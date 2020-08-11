@@ -24,23 +24,23 @@ class Cupboard < BoundaryObject
       self.items = Hash.new
       place.fixtures.merge!(self.fixtures)
       self.fixtures = Hash.new
+	  return 'cupboard opens'
     else 
-      puts 'cupboard door is already open'
+      return 'cupboard door is already open'
     end
     dbg "cupboard door state #{cupboard_state}"
   end
   def close place, quester
     if open?
       @cupboard_state = :closed
+	  return 'cupboard closes'
     else 
-      puts 'cupboard door is already closed'
+      return 'cupboard door is already closed'
     end
     dbg "cupboard door state #{cupboard_state}"
   end
   
   def closed?
-    #puts '*** Testing *** - all doors set open'
-    #return false
     return true if @cupboard_state == :closed
     return false
   end

@@ -64,21 +64,19 @@ class Quester
   end
   
   def look
-    puts "You have the following items:" if @possessions.count > 0
+    possessions = "You have the no items"
+    possessions = "You have the following items:" if @possessions.count > 0
     @possessions.each_pair do | possession,value | 
       status_msg = ''
       status_msg = "- #{value.status_description}" if value.respond_to? :status_description and value.status_description != ''
-      puts "\t#{possession.to_s} #{status_msg}"
+      possessions += "#{possession.to_s} #{status_msg}"
     end
-    puts ''
+    return possessions
   end
 
   def wash object, current_place
-    (puts 'wash what?';return) if not object 
-    if not current_place.fixtures[object.to_sym] 
-      puts "there is no #{object} here"
-      return
-    end
+    return 'wash what?' if not object 
+    return "there is no #{object} here" if not current_place.fixtures[object.to_sym] 
     if current_place.fixtures[object.to_sym].respond_to? :clean
       current_place.fixtures[object.to_sym].clean
     end
@@ -89,7 +87,7 @@ class Quester
     if facing_boundary.can_move_through?
       @place = @place.send("#{facing_direction}_location".to_sym)
     else
-      puts facing_boundary.no_move_reason
+      return facing_boundary.no_move_reason
     end
   end 
 
