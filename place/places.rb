@@ -32,7 +32,36 @@ class Places
     foyer.west_boundary = Door.new description: 'a glass sliding door' 
     foyer.north_boundary = Way.new description: 'an area'	
     locations[foyer.name] = foyer
-    
+ 
+    area = Place.new name: 'area', description: 'an area'
+    area.east_boundary = Way.new description: 'kitchen way'
+    area.south_boundary = foyer.north_boundary
+    area.west_boundary = Way.new description: 'lounge way'
+    area.north_boundary = Way.new description: 'dining room way'
+    locations[area.name] = area
+
+    dining = Place.new name: 'dining', description: 'dining room'
+    dining.east_boundary = Wall.new description: 'a light red plaster wall'
+    dining.south_boundary = area.north_boundary
+    dining.west_boundary = Door.new description: 'double glass'  #, :closed, :locked, :end_boundary
+    dining.north_boundary = Window.new description: 'glass window' #, :closed, :locked, :end_boundary
+    locations[dining.name] = dining
+
+    lounge = Place.new name: 'lounge', description: 'the lounge room' #, :inside
+    lounge.east_boundary = area.west_boundary
+    lounge.south_boundary = Door.new description: 'sliding glass' #, :open, :unlocked
+    lounge.west_boundary = Door.new description: 'french doors' #, :closed, :unlocked
+    lounge.north_boundary = Window.new description: 'glass window' #, :closed, :unlocked, :end_boundary
+    locations[lounge.name] = lounge
+   
+    kitchen = Place.new name: 'kitchen', description: 'the kitchen' #, :inside
+    kitchen.east_boundary = Window.new description: 'glass window' #, :closed, :locked, :end_boundary
+    kitchen.south_boundary = Wall.new description: 'glass splash back'
+    kitchen.west_boundary = area.east_boundary
+    kitchen.north_boundary = Wall.new description: 'painted plaster wall'
+    locations[kitchen.name] = kitchen
+
+ 
 #    short_hall = Place.new 'short_hall', 'a hall', :inside
 #    short_hall.east_boundary = Cupboard.new 'slatted wooden', :closed
 #    short_hall.south_boundary = Way.new 'long_hall1', 'hallway'
@@ -148,33 +177,16 @@ class Places
  #   bathroom1.north_boundary = Wall.new 'plaster','painted'
  #   locations[bathroom1.name] = bathroom1
     
- #   area = Place.new 'area', 'an area', :inside
- #   area.east_boundary = Way.new 'kitchen_way', 'kitchen_way desc'
- #   area.south_boundary = foyer.north_boundary
- #   area.west_boundary = Way.new 'lounge_way', 'lw desc'
- #   area.north_boundary = Way.new 'dining_room_way', 'drw desc'
- #   locations[area.name] = area
+ 
+ 
+ 
+ 
 
-#    dining = Place.new 'dining', 'a room', :inside
-#    dining.east_boundary = Wall.new 'plaster', 'painted light red'
-#    dining.south_boundary = area.north_boundary
-#    dining.west_boundary = Door.new 'double glass', :closed, :locked, :end_boundary
-#    dining.north_boundary = Window.new 'glass', :closed, :locked, :end_boundary
-#    locations[dining.name] = dining
+
+
+
+
     
-#    lounge = Place.new 'lounge', 'a room', :inside
-#    lounge.east_boundary = area.west_boundary
-#    lounge.south_boundary = Door.new 'sliding glass', :open, :unlocked
-#    lounge.west_boundary = Door.new 'french doors', :closed, :unlocked
-#    lounge.north_boundary = Window.new 'glass', :closed, :unlocked, :end_boundary
-#    locations[lounge.name] = lounge
-   
-#    kitchen = Place.new 'kitchen', 'a room', :inside
-#    kitchen.east_boundary = Window.new 'glass', :closed, :locked, :end_boundary
-#    kitchen.south_boundary = Wall.new 'glass', 'splash back'
-#    kitchen.west_boundary = area.east_boundary
-#    kitchen.north_boundary = Wall.new 'plaster', 'painted'
-#    locations[kitchen.name] = kitchen
     
 #    craft_room = Place.new 'craft_room', 'a room', :inside
 #    craft_room.east_boundary = lounge.west_boundary
@@ -196,7 +208,7 @@ class Places
     workshop.west_location = porch
     foyer.east_location = porch
 #    foyer.south_location = short_hall
-#    foyer.north_location = area
+    foyer.north_location = area
 #    foyer.west_location = atrium
 #    atrium.east_location = foyer
 #    short_hall.north_location = foyer
@@ -231,15 +243,15 @@ class Places
 #    robe.west_location = bathroom1
 #    robe.north_location = main_bedroom
 #    bathroom1.east_location = robe
-#    area.east_location = kitchen
-#    area.west_location = lounge
-#    area.south_location = foyer
-#    area.north_location = dining
-#    dining.south_location = area
-#    kitchen.west_location = area
-#    lounge.west_location = craft_room
-#    lounge.south_location = atrium
-#    lounge.east_location = area
+    area.east_location = kitchen
+    area.west_location = lounge
+    area.south_location = foyer
+    area.north_location = dining
+    dining.south_location = area
+    kitchen.west_location = area
+    #lounge.west_location = craft_room
+    #lounge.south_location = atrium
+    #lounge.east_location = area
 #    atrium.north_location = lounge
 #    craft_room.east_location = lounge
 #    

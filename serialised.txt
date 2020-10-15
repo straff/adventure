@@ -1,0 +1,216 @@
+--- !ruby/object:Adventure
+places: !ruby/object:Places
+  locations:
+    porch: &2 !ruby/object:Place
+      name: porch
+      description: a pink tiled porch area
+      inside: false
+      items: {}
+      fixtures:
+        :planter: &14 !ruby/object:Fixture
+          name: planter
+          status_description: ''
+          achieved: false
+      west_boundary: &1 !ruby/object:Door
+        description: a heavy wooden door
+        door_state: :open
+        lock_state: :unlocked
+        end_boundary: false
+      south_boundary: !ruby/object:Window
+        description: a glass window
+        window_state: :closed
+        lock_state: :locked
+        end_boundary: false
+      east_boundary: &9 !ruby/object:Door
+        description: a glass door
+        door_state: :closed
+        lock_state: :locked
+        end_boundary: false
+      north_boundary: !ruby/object:Wall
+        description: a pale green wall
+        end_boundary: true
+      west_location: &8 !ruby/object:Place
+        name: foyer
+        description: a small foyer area
+        inside: true
+        items:
+          :key: !ruby/object:Item
+            name: key
+            status_description: ''
+            achieved: false
+        fixtures:
+          :wooden_shelf: &15 !ruby/object:Fixture
+            name: wooden_shelf
+            status_description: ''
+            achieved: false
+        west_boundary: !ruby/object:Door
+          description: a glass sliding door
+          door_state: :closed
+          lock_state: :locked
+          end_boundary: false
+        south_boundary: !ruby/object:Way
+          description: a short hallway
+        east_boundary: *1
+        north_boundary: &3 !ruby/object:Way
+          description: an area
+        east_location: *2
+        north_location: &6 !ruby/object:Place
+          name: area
+          description: an area
+          inside: true
+          items: {}
+          fixtures: {}
+          west_boundary: &4 !ruby/object:Way
+            description: lounge way
+          south_boundary: *3
+          east_boundary: &5 !ruby/object:Way
+            description: kitchen way
+          north_boundary: &7 !ruby/object:Way
+            description: dining room way
+          west_location: &12 !ruby/object:Place
+            name: lounge
+            description: the lounge room
+            inside: true
+            items: {}
+            fixtures: {}
+            west_boundary: !ruby/object:Door
+              description: french doors
+              door_state: :closed
+              lock_state: :locked
+              end_boundary: false
+            south_boundary: !ruby/object:Door
+              description: sliding glass
+              door_state: :closed
+              lock_state: :locked
+              end_boundary: false
+            east_boundary: *4
+            north_boundary: !ruby/object:Window
+              description: glass window
+              window_state: :closed
+              lock_state: :locked
+              end_boundary: false
+          east_location: &13 !ruby/object:Place
+            name: kitchen
+            description: the kitchen
+            inside: true
+            items: {}
+            fixtures: {}
+            west_boundary: *5
+            south_boundary: !ruby/object:Wall
+              description: glass splash back
+              end_boundary: true
+            east_boundary: !ruby/object:Window
+              description: glass window
+              window_state: :closed
+              lock_state: :locked
+              end_boundary: false
+            north_boundary: !ruby/object:Wall
+              description: painted plaster wall
+              end_boundary: true
+            west_location: *6
+          north_location: &11 !ruby/object:Place
+            name: dining
+            description: dining room
+            inside: true
+            items: {}
+            fixtures: {}
+            west_boundary: !ruby/object:Door
+              description: double glass
+              door_state: :closed
+              lock_state: :locked
+              end_boundary: false
+            south_boundary: *7
+            east_boundary: !ruby/object:Wall
+              description: a light red plaster wall
+              end_boundary: true
+            north_boundary: !ruby/object:Window
+              description: glass window
+              window_state: :closed
+              lock_state: :locked
+              end_boundary: false
+            south_location: *6
+          south_location: *8
+      east_location: &10 !ruby/object:Place
+        name: workshop
+        description: a productive place
+        inside: true
+        items: {}
+        fixtures: {}
+        west_boundary: *9
+        south_boundary: !ruby/object:Door
+          description: a metal roller door
+          door_state: :closed
+          lock_state: :locked
+          end_boundary: false
+        east_boundary: !ruby/object:Wall
+          description: a white painted plaster wall
+          end_boundary: true
+        north_boundary: !ruby/object:Window
+          description: a glass window
+          window_state: :closed
+          lock_state: :locked
+          end_boundary: false
+        west_location: *2
+    workshop: *10
+    foyer: *8
+    area: *6
+    dining: *11
+    lounge: *12
+    kitchen: *13
+possessable_items: !ruby/object:PossessableItems {}
+fixture_items: &16 !ruby/object:FixtureItems
+  items:
+    :planter: *14
+    :wooden_shelf: *15
+    :recycle_bin: !ruby/object:Fixture
+      name: recycle_bin
+      status_description: ''
+      achieved: false
+    :dishes: !ruby/object:Dishes
+      name:
+        :name: dishes
+      status: true
+      status_description: "- dirty"
+      achieved: false
+    :sewing_machine: !ruby/object:Fixture
+      name: sewing_machine
+      status_description: ''
+      achieved: false
+    :safe: !ruby/object:Fixture
+      name: safe
+      status_description: ''
+      achieved: false
+mission: !ruby/object:Mission
+  mission_elements:
+  - :key
+  - :dishes
+  - :chocolate_eggs
+  - :screwdriver
+  description: Your mission is to collect a key, wash the dishes, collect a screwdriver,
+    collect chocolate eggs. Sounds easy.
+  fixtures: *16
+questers:
+  0: &17 !ruby/object:Quester
+    name: Tom
+    age: 12
+    facing_direction: :north
+    place: *6
+    possessions: {}
+    directions:
+      0: :north
+      1: :west
+      2: :south
+      3: :east
+      4: :north
+      5: :west
+      6: :south
+      :north: :north
+      :south: :south
+      :east: :east
+      :west: :west
+    compass_points:
+      :north: 4
+      :west: 5
+      :south: 2
+      :east: 3
+quester: *17
