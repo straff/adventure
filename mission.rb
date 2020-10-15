@@ -14,9 +14,7 @@ class Mission
   end
   
   def show
-    puts '*********************************************************'
-    puts "#{self.description}"
-    puts '*********************************************************'
+    return "#{self.description}"
   end
   
   def complete?
