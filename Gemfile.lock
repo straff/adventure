@@ -1,0 +1,16 @@
+PATH
+  remote: .
+  specs:
+    adventure (0.0.7)
+
+GEM
+  specs:
+
+PLATFORMS
+  x64-mingw32
+
+DEPENDENCIES
+  adventure!
+
+BUNDLED WITH
+   2.1.4

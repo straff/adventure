@@ -1,0 +1,1 @@
+gem "adventure", path: "C:/Users/Straff/dev/adventure/"

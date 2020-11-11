@@ -1,0 +1,8 @@
+gem build adventure.gemspec
+
+bundle exec gem install adventure
+
+
+bundle info adventure
+
+bundle list

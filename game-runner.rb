@@ -1,17 +1,25 @@
 
 require 'yaml'
-require './adventure.rb'
+
+viagem= false
 
 ARGV.each do|arg|
   puts "Argument: #{arg}"
-  if arg.match(/dbg/)
-    DBG=TRUE
-  end    
+  DBG=true if arg.match(/dbg/)
+  viagem=true if arg.match(/gem/)
 end
 if defined? DBG
   DBG=false unless DBG
 else
   DBG=false
+end
+
+if viagem
+  gem 'adventure'  #, path: 'C:/Users/Straff/dev/adventure/gems'
+  puts "Running via gem version #{Gem.loaded_specs['adventure'].version}"
+  require 'adventure.rb'
+else
+  require './lib/adventure.rb'
 end
 
 puts 'press the "any key" to continue, "load" to get saved game back'
