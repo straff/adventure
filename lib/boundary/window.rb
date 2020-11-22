@@ -13,26 +13,26 @@ class Window < BoundaryObject
   end
   
   def open place, quester
+    dbg "window state #{window_state}"
     if closed?
       if place.inside?
         @window_state = :open
-		return 'the window creaks, and opens'
+        return 'the window shudders, and opens'
       else 
         return 'can not open window from outside'
       end
     else 
       return 'window is already open'
     end
-    dbg "window state #{window_state}"
   end
   def close place, quester
+    dbg "window state #{window_state}"
     if open?
       @window_state = :closed
-	  return 'the window closes'
+      return 'the window closes'
     else 
       return 'window is already closed'
     end
-    dbg "window state #{window_state}"
   end
   
   def closed?

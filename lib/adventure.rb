@@ -20,6 +20,7 @@ class Adventure
 	def initialize name, age, facing_direction=:west, place=nil
 	  @places = Places.new
 	  @places.build
+    @places.validate
 
 	  @possessable_items = PossessableItems.new
 	  @possessable_items.put_in_locations places
@@ -35,6 +36,50 @@ class Adventure
 	  @quester = Quester.new name, age, facing_direction, places.locations['porch']
 	  @questers[0] = @quester
 	end
+  
+  def do_player_command command:, quester:, current_place:, facing_boundary:
+  
+    action, entity = get_action_entity command # including aliasing
+    dbg "action #{action}, entity #{entity}"
+    
+    command_results = []
+   
+    dbg 'quester processing'
+    #if adventure.quester.respond_to? action.to_sym
+    if self.quester.respond_to? action.to_sym
+      quester_action_response = self.quester.send(action.to_sym, entity, current_place)
+      command_results << quester_action_response
+      quester_responded = true
+    else
+      dbg "quester did not respond - #{self.quester.name}"
+      quester_responded = false
+    end
+      
+    dbg 'current_place processing'
+    if current_place.respond_to? action.to_sym
+      place_action_result = current_place.send(action.to_sym, entity) 
+      command_results << place_action_result
+      current_place_responded = true
+    else
+      dbg "current_place did not respond - #{current_place.description}" 
+      current_place_responded = false
+    end
+    
+    dbg 'facing_boundary processing'
+    if facing_boundary.respond_to? action.to_sym
+      facing_boundary_action_results = facing_boundary.send(action.to_sym, current_place, quester) 
+      command_results << facing_boundary_action_results
+      facing_boundary_responded = true
+    else
+      dbg "facing_boundary did not respond - #{facing_boundary.description}" 
+      facing_boundary_responded = false
+    end
+    
+    command_results << "#{action} is not a known action" if not quester_responded and not current_place_responded and not facing_boundary_responded
+    
+    return command_results
+
+  end
 
 	def show_debug current_place, facing_boundary, quester
 	  dbg "current_place #{current_place}"

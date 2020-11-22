@@ -3,8 +3,9 @@ class BoundaryObject
   attr_reader :description
   attr_reader :end_boundary
   
-  def initialize( description:, end_boundary: true )
+  def initialize description:, end_boundary: false
     @description = description
+    @end_boundary = end_boundary
   end
   
   def to_s

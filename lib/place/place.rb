@@ -1,6 +1,6 @@
 class Place
 
-  attr_reader :name
+  attr_accessor :id
   attr_reader :description
   attr_reader :inside
   
@@ -16,10 +16,10 @@ class Place
   attr_accessor :items
   attr_accessor :fixtures
   
-  def initialize name:, description:, inside: true
-    @name = name
+  def initialize id:, description:, inside: true
+    @id = id
     @description = description
-	@inside = inside
+    @inside = inside
     @items = Hash.new
     @fixtures = Hash.new
   end

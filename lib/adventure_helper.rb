@@ -17,7 +17,7 @@ module AdventureHelper
     
   end
   
-  def get_action_object response
+  def get_action_entity response
     splitted = response.split(' ')
     action = splitted[0]
     object = splitted[1] if splitted.count >= 2
@@ -44,8 +44,8 @@ module AdventureHelper
   end	
     
   def dbg (msg)
-    if DBG
-      puts msg
+    if defined? DBG 
+      puts "DBG: #{msg}"
     end
   end
   

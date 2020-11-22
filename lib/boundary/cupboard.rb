@@ -8,15 +8,16 @@ class Cupboard < BoundaryObject
   attr_accessor :items
   attr_accessor :fixtures
   
-  def initialize type, cupboard_state, end_boundary = true
-    @cupboard_state = cupboard_state
+  def initialize description:, end_boundary: true
+    @description = description
+    @cupboard_state = :closed
     @end_boundary = end_boundary
     @items = Hash.new
     @fixtures = Hash.new
-    super type, "a #{type} door"
   end
   
   def open place, quester
+    dbg "cupboard door state #{cupboard_state}"
     if closed?
       @cupboard_state = :open
       dbg 'merging cupboard items and fixtures to place'
@@ -24,20 +25,19 @@ class Cupboard < BoundaryObject
       self.items = Hash.new
       place.fixtures.merge!(self.fixtures)
       self.fixtures = Hash.new
-	  return 'cupboard opens'
-    else 
-      return 'cupboard door is already open'
+      return 'cupboard opens'
+    else
+      return 'cupboard is already open'
     end
-    dbg "cupboard door state #{cupboard_state}"
   end
   def close place, quester
+    dbg "cupboard door state #{cupboard_state}"
     if open?
       @cupboard_state = :closed
 	  return 'cupboard closes'
     else 
-      return 'cupboard door is already closed'
+      return 'cupboard is already closed'
     end
-    dbg "cupboard door state #{cupboard_state}"
   end
   
   def closed?

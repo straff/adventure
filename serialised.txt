@@ -1,13 +1,13 @@
 --- !ruby/object:Adventure
 places: !ruby/object:Places
   locations:
-    porch: &2 !ruby/object:Place
-      name: porch
+    porch: &22 !ruby/object:Place
+      id: porch
       description: a pink tiled porch area
       inside: false
       items: {}
       fixtures:
-        :planter: &14 !ruby/object:Fixture
+        :planter: &51 !ruby/object:Fixture
           name: planter
           status_description: ''
           achieved: false
@@ -16,34 +16,30 @@ places: !ruby/object:Places
         door_state: :open
         lock_state: :unlocked
         end_boundary: false
-      south_boundary: !ruby/object:Window
+      south_boundary: &16 !ruby/object:Window
         description: a glass window
         window_state: :closed
         lock_state: :locked
         end_boundary: false
-      east_boundary: &9 !ruby/object:Door
+      east_boundary: &38 !ruby/object:Door
         description: a glass door
-        door_state: :closed
-        lock_state: :locked
+        door_state: :open
+        lock_state: :unlocked
         end_boundary: false
       north_boundary: !ruby/object:Wall
         description: a pale green wall
         end_boundary: true
-      west_location: &8 !ruby/object:Place
-        name: foyer
+      west_location: &3 !ruby/object:Place
+        id: foyer
         description: a small foyer area
         inside: true
-        items:
-          :key: !ruby/object:Item
-            name: key
-            status_description: ''
-            achieved: false
+        items: {}
         fixtures:
-          :wooden_shelf: &15 !ruby/object:Fixture
+          :wooden_shelf: &52 !ruby/object:Fixture
             name: wooden_shelf
             status_description: ''
             achieved: false
-        west_boundary: !ruby/object:Door
+        west_boundary: &2 !ruby/object:Door
           description: a glass sliding door
           door_state: :closed
           lock_state: :locked
@@ -51,92 +47,442 @@ places: !ruby/object:Places
         south_boundary: !ruby/object:Way
           description: a short hallway
         east_boundary: *1
-        north_boundary: &3 !ruby/object:Way
+        north_boundary: &33 !ruby/object:Way
           description: an area
-        east_location: *2
-        north_location: &6 !ruby/object:Place
-          name: area
-          description: an area
+        west_location: &28 !ruby/object:Place
+          id: atrium
+          description: the atrium room
           inside: true
           items: {}
           fixtures: {}
-          west_boundary: &4 !ruby/object:Way
-            description: lounge way
-          south_boundary: *3
-          east_boundary: &5 !ruby/object:Way
-            description: kitchen way
-          north_boundary: &7 !ruby/object:Way
-            description: dining room way
-          west_location: &12 !ruby/object:Place
-            name: lounge
+          west_boundary: !ruby/object:Wall
+            description: cream plaster wall
+            end_boundary: true
+          south_boundary: &4 !ruby/object:Door
+            description: glass sliding door
+            door_state: :closed
+            lock_state: :locked
+            end_boundary: false
+          east_boundary: *2
+          north_boundary: &29 !ruby/object:Door
+            description: sliding glass
+            door_state: :open
+            lock_state: :unlocked
+            end_boundary: false
+          east_location: *3
+          south_location: &8 !ruby/object:Place
+            id: long_hall_3
+            description: a hallway
+            inside: true
+            items: {}
+            fixtures: {}
+            west_boundary: &5 !ruby/object:Way
+              description: hallway
+            south_boundary: &27 !ruby/object:Door
+              description: wooden door
+              door_state: :open
+              lock_state: :unlocked
+              end_boundary: false
+            east_boundary: &11 !ruby/object:Way
+              description: longer hallway
+            north_boundary: *4
+            west_location: &7 !ruby/object:Place
+              id: long_hall4
+              description: a hallway
+              inside: true
+              items: {}
+              fixtures: {}
+              west_boundary: &6 !ruby/object:Door
+                description: wooden door
+                door_state: :open
+                lock_state: :unlocked
+                end_boundary: false
+              south_boundary: &9 !ruby/object:Door
+                description: wooden door
+                door_state: :open
+                lock_state: :unlocked
+                end_boundary: false
+              east_boundary: *5
+              north_boundary: &10 !ruby/object:Door
+                description: wooden door
+                door_state: :open
+                lock_state: :unlocked
+                end_boundary: false
+              west_location: &45 !ruby/object:Place
+                id: bedroom_p
+                description: a bedroom room
+                inside: true
+                items: {}
+                fixtures: {}
+                west_boundary: !ruby/object:Window
+                  description: double-glazed glass window
+                  window_state: :closed
+                  lock_state: :locked
+                  end_boundary: false
+                south_boundary: !ruby/object:Window
+                  description: double-glazed glass window
+                  window_state: :closed
+                  lock_state: :locked
+                  end_boundary: false
+                east_boundary: *6
+                north_boundary: !ruby/object:Door
+                  description: double wooden doors
+                  door_state: :closed
+                  lock_state: :locked
+                  end_boundary: false
+                east_location: *7
+              east_location: *8
+              south_location: &44 !ruby/object:Place
+                id: bedroom_c
+                description: a bedroom
+                inside: true
+                items: {}
+                fixtures: {}
+                west_boundary: !ruby/object:Wall
+                  description: cream plaster wall
+                  end_boundary: true
+                south_boundary: !ruby/object:Window
+                  description: glass window
+                  window_state: :closed
+                  lock_state: :locked
+                  end_boundary: false
+                east_boundary: !ruby/object:Door
+                  description: double wooden doors
+                  door_state: :unlocked
+                  lock_state: :closed
+                  end_boundary: false
+                north_boundary: *9
+                north_location: *7
+              north_location: &46 !ruby/object:Place
+                id: bedroom_k
+                description: a bedroom
+                inside: true
+                items: {}
+                fixtures: {}
+                west_boundary: !ruby/object:Door
+                  description: glass sliding door
+                  door_state: :closed
+                  lock_state: :locked
+                  end_boundary: false
+                south_boundary: *10
+                east_boundary: !ruby/object:Wall
+                  description: cream plastered wall
+                  end_boundary: true
+                north_boundary: !ruby/object:Wall
+                  description: cream plaster wall
+                  end_boundary: true
+                south_location: *7
+            east_location: &13 !ruby/object:Place
+              id: long_hall_2
+              description: a hall
+              inside: true
+              items: {}
+              fixtures: {}
+              west_boundary: *11
+              south_boundary: &26 !ruby/object:Door
+                description: wooden door
+                door_state: :open
+                lock_state: :unlocked
+                end_boundary: false
+              east_boundary: &12 !ruby/object:Way
+                description: hallway
+              north_boundary: !ruby/object:Wall
+                description: wall-papered wall
+                end_boundary: true
+              west_location: *8
+              east_location: &14 !ruby/object:Place
+                id: long_hall_1
+                description: a longish hall
+                inside: true
+                items: {}
+                fixtures: {}
+                west_boundary: *12
+                south_boundary: !ruby/object:Cupboard
+                  description: slatted wooden
+                  cupboard_state: :closed
+                  end_boundary: true
+                  items: {}
+                  fixtures: {}
+                east_boundary: !ruby/object:Way
+                  description: hallway
+                north_boundary: &25 !ruby/object:Way
+                  description: long hallway
+                west_location: *13
+                east_location: &17 !ruby/object:Place
+                  id: tiny_hall
+                  description: a small hall
+                  inside: true
+                  items: {}
+                  fixtures: {}
+                  west_boundary: !ruby/object:Way
+                    description: a long hall
+                  south_boundary: &23 !ruby/object:Door
+                    description: light wooden door
+                    door_state: :closed
+                    lock_state: :locked
+                    end_boundary: false
+                  east_boundary: &15 !ruby/object:Door
+                    description: light wooden door
+                    door_state: :open
+                    lock_state: :locked
+                    end_boundary: false
+                  north_boundary: !ruby/object:Wall
+                    description: wall papered wall
+                    end_boundary: true
+                  west_location: *14
+                  east_location: &21 !ruby/object:Place
+                    id: bedroom_main
+                    description: a bedroom
+                    inside: true
+                    items: {}
+                    fixtures: {}
+                    west_boundary: *15
+                    south_boundary: &18 !ruby/object:Door
+                      description: light wooden door
+                      door_state: :open
+                      lock_state: :locked
+                      end_boundary: false
+                    east_boundary: !ruby/object:Wall
+                      description: a wall-papered wall
+                      end_boundary: true
+                    north_boundary: *16
+                    west_location: *17
+                    south_location: &20 !ruby/object:Place
+                      id: robe
+                      description: a walk-in robe
+                      inside: true
+                      items: {}
+                      fixtures: {}
+                      west_boundary: &19 !ruby/object:Door
+                        description: a light wooden door
+                        door_state: :open
+                        lock_state: :locked
+                        end_boundary: false
+                      south_boundary: !ruby/object:Wall
+                        description: painted plaster wall
+                        end_boundary: true
+                      east_boundary: !ruby/object:Window
+                        description: glass window
+                        window_state: :closed
+                        lock_state: :locked
+                        end_boundary: false
+                      north_boundary: *18
+                      west_location: &49 !ruby/object:Place
+                        id: ensuite
+                        description: an ensuite
+                        inside: true
+                        items: {}
+                        fixtures: {}
+                        west_boundary: !ruby/object:Wall
+                          description: a tiled and painted wall
+                          end_boundary: true
+                        south_boundary: !ruby/object:Wall
+                          description: a mirror
+                          end_boundary: true
+                        east_boundary: *19
+                        north_boundary: !ruby/object:Wall
+                          description: a glass and tiled wall
+                          end_boundary: true
+                        east_location: *20
+                      north_location: *21
+                    north_location: *22
+                  south_location: &47 !ruby/object:Place
+                    id: laundry
+                    description: laundry
+                    inside: true
+                    items: {}
+                    fixtures: {}
+                    west_boundary: !ruby/object:Wall
+                      description: wall papered plaster wall
+                      end_boundary: true
+                    south_boundary: &24 !ruby/object:Door
+                      description: glass/wooden door
+                      door_state: :closed
+                      lock_state: :locked
+                      end_boundary: false
+                    east_boundary: !ruby/object:Wall
+                      description: painted plaster wall
+                      end_boundary: true
+                    north_boundary: *23
+                    south_location: &48 !ruby/object:Place
+                      id: garage
+                      description: a garage
+                      inside: true
+                      items: {}
+                      fixtures: {}
+                      west_boundary: !ruby/object:Way
+                        description: a doorway
+                      south_boundary: !ruby/object:Wall
+                        description: solid brick wall
+                        end_boundary: true
+                      east_boundary: !ruby/object:Door
+                        description: steel rollerdoor
+                        door_state: :closed
+                        lock_state: :locked
+                        end_boundary: true
+                      north_boundary: *24
+                    north_location: *17
+                north_location: &37 !ruby/object:Place
+                  id: short_hall
+                  description: a hall
+                  inside: true
+                  items: {}
+                  fixtures: {}
+                  west_boundary: !ruby/object:Wall
+                    description: wall-papered wall
+                    end_boundary: true
+                  south_boundary: *25
+                  east_boundary: !ruby/object:Cupboard
+                    description: slatted wooden
+                    cupboard_state: :closed
+                    end_boundary: true
+                    items: {}
+                    fixtures: {}
+                  north_boundary: !ruby/object:Way
+                    description: a foyer
+                  south_location: *14
+                  north_location: *3
+              south_location: &42 !ruby/object:Place
+                id: office
+                description: an office room
+                inside: true
+                items: {}
+                fixtures: {}
+                west_boundary: !ruby/object:Wall
+                  description: cream painted wall
+                  end_boundary: true
+                south_boundary: !ruby/object:Wall
+                  description: cream painted wall
+                  end_boundary: true
+                east_boundary: !ruby/object:Wall
+                  description: cream painted wall
+                  end_boundary: true
+                north_boundary: *26
+            south_location: &43 !ruby/object:Place
+              id: bathroom2
+              description: a bathroom
+              inside: true
+              items: {}
+              fixtures: {}
+              west_boundary: !ruby/object:Wall
+                description: cream tiled wall
+                end_boundary: true
+              south_boundary: !ruby/object:Window
+                description: glass window
+                window_state: :closed
+                lock_state: :locked
+                end_boundary: false
+              east_boundary: !ruby/object:Wall
+                description: mirror
+                end_boundary: true
+              north_boundary: *27
+              north_location: *8
+            north_location: *28
+          north_location: &31 !ruby/object:Place
+            id: lounge
             description: the lounge room
             inside: true
             items: {}
             fixtures: {}
-            west_boundary: !ruby/object:Door
+            west_boundary: &30 !ruby/object:Door
               description: french doors
               door_state: :closed
               lock_state: :locked
               end_boundary: false
-            south_boundary: !ruby/object:Door
-              description: sliding glass
-              door_state: :closed
-              lock_state: :locked
-              end_boundary: false
-            east_boundary: *4
+            south_boundary: *29
+            east_boundary: &32 !ruby/object:Way
+              description: lounge way
             north_boundary: !ruby/object:Window
               description: glass window
               window_state: :closed
               lock_state: :locked
               end_boundary: false
-          east_location: &13 !ruby/object:Place
-            name: kitchen
-            description: the kitchen
-            inside: true
-            items: {}
-            fixtures: {}
-            west_boundary: *5
-            south_boundary: !ruby/object:Wall
-              description: glass splash back
-              end_boundary: true
-            east_boundary: !ruby/object:Window
-              description: glass window
-              window_state: :closed
-              lock_state: :locked
-              end_boundary: false
-            north_boundary: !ruby/object:Wall
-              description: painted plaster wall
-              end_boundary: true
-            west_location: *6
-          north_location: &11 !ruby/object:Place
-            name: dining
-            description: dining room
-            inside: true
-            items: {}
-            fixtures: {}
-            west_boundary: !ruby/object:Door
-              description: double glass
-              door_state: :closed
-              lock_state: :locked
-              end_boundary: false
-            south_boundary: *7
-            east_boundary: !ruby/object:Wall
-              description: a light red plaster wall
-              end_boundary: true
-            north_boundary: !ruby/object:Window
-              description: glass window
-              window_state: :closed
-              lock_state: :locked
-              end_boundary: false
-            south_location: *6
-          south_location: *8
-      east_location: &10 !ruby/object:Place
-        name: workshop
+            west_location: &50 !ruby/object:Place
+              id: craft_room
+              description: the craftroom
+              inside: true
+              items: {}
+              fixtures: {}
+              west_boundary: !ruby/object:Door
+                description: sliding glass door
+                door_state: :closed
+                lock_state: :locked
+                end_boundary: true
+              south_boundary: !ruby/object:Wall
+                description: wall-papered wall
+                end_boundary: true
+              east_boundary: *30
+              north_boundary: !ruby/object:Door
+                description: sliding glass door
+                door_state: :closed
+                lock_state: :locked
+                end_boundary: true
+              east_location: *31
+            east_location: &35 !ruby/object:Place
+              id: area
+              description: an area
+              inside: true
+              items: {}
+              fixtures: {}
+              west_boundary: *32
+              south_boundary: *33
+              east_boundary: &34 !ruby/object:Way
+                description: kitchen way
+              north_boundary: &36 !ruby/object:Way
+                description: dining room way
+              west_location: *31
+              east_location: &41 !ruby/object:Place
+                id: kitchen
+                description: the kitchen
+                inside: true
+                items: {}
+                fixtures: {}
+                west_boundary: *34
+                south_boundary: !ruby/object:Wall
+                  description: glass splash back
+                  end_boundary: true
+                east_boundary: !ruby/object:Window
+                  description: glass window
+                  window_state: :closed
+                  lock_state: :locked
+                  end_boundary: false
+                north_boundary: !ruby/object:Wall
+                  description: painted plaster wall
+                  end_boundary: true
+                west_location: *35
+              south_location: *3
+              north_location: &40 !ruby/object:Place
+                id: dining
+                description: dining room
+                inside: true
+                items: {}
+                fixtures: {}
+                west_boundary: !ruby/object:Door
+                  description: double glass
+                  door_state: :closed
+                  lock_state: :locked
+                  end_boundary: false
+                south_boundary: *36
+                east_boundary: !ruby/object:Wall
+                  description: a light red plaster wall
+                  end_boundary: true
+                north_boundary: !ruby/object:Window
+                  description: glass window
+                  window_state: :closed
+                  lock_state: :locked
+                  end_boundary: false
+                south_location: *35
+            south_location: *28
+        east_location: *22
+        south_location: *37
+        north_location: *35
+      east_location: &39 !ruby/object:Place
+        id: workshop
         description: a productive place
         inside: true
         items: {}
         fixtures: {}
-        west_boundary: *9
+        west_boundary: *38
         south_boundary: !ruby/object:Door
           description: a metal roller door
           door_state: :closed
@@ -150,18 +496,36 @@ places: !ruby/object:Places
           window_state: :closed
           lock_state: :locked
           end_boundary: false
-        west_location: *2
-    workshop: *10
-    foyer: *8
-    area: *6
-    dining: *11
-    lounge: *12
-    kitchen: *13
+        west_location: *22
+    workshop: *39
+    foyer: *3
+    area: *35
+    dining: *40
+    lounge: *31
+    kitchen: *41
+    short_hall: *37
+    long_hall_1: *14
+    long_hall_2: *13
+    office: *42
+    long_hall_3: *8
+    bathroom2: *43
+    long_hall4: *7
+    bedroom_c: *44
+    bedroom_p: *45
+    bedroom_k: *46
+    tiny_hall: *17
+    laundry: *47
+    garage: *48
+    bedroom_main: *21
+    robe: *20
+    ensuite: *49
+    craft_room: *50
+    atrium: *28
 possessable_items: !ruby/object:PossessableItems {}
-fixture_items: &16 !ruby/object:FixtureItems
+fixture_items: &53 !ruby/object:FixtureItems
   items:
-    :planter: *14
-    :wooden_shelf: *15
+    :planter: *51
+    :wooden_shelf: *52
     :recycle_bin: !ruby/object:Fixture
       name: recycle_bin
       status_description: ''
@@ -188,14 +552,18 @@ mission: !ruby/object:Mission
   - :screwdriver
   description: Your mission is to collect a key, wash the dishes, collect a screwdriver,
     collect chocolate eggs. Sounds easy.
-  fixtures: *16
+  fixtures: *53
 questers:
-  0: &17 !ruby/object:Quester
+  0: &54 !ruby/object:Quester
     name: Tom
     age: 12
-    facing_direction: :north
-    place: *6
-    possessions: {}
+    facing_direction: :east
+    place: *39
+    possessions:
+      :key: !ruby/object:Item
+        name: key
+        status_description: ''
+        achieved: true
     directions:
       0: :north
       1: :west
@@ -213,4 +581,4 @@ questers:
       :west: 5
       :south: 2
       :east: 3
-quester: *17
+quester: *54

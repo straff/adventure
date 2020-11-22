@@ -5,29 +5,27 @@ class Door < BoundaryObject
   attr_accessor :door_state
   attr_accessor :lock_state
   
-  def initialize description:, lock_state: :locked, end_boundary: false
+  def initialize description:, door_state: :closed, lock_state: :locked, end_boundary: false
     @description = description
-    @door_state = :closed
+    @door_state = door_state
     @lock_state = lock_state
     @end_boundary = end_boundary
   end
   
   def open place, quester
-    return 'door is locked' if locked?
-    if unlocked?
-      if closed?
-        @door_state = :open
-		return 'door creaks open'
-      else 
-        return 'door is already open'
-      end
-    end
     dbg "door state #{door_state}"
+    return 'door is locked' if locked?
+    if closed?
+      @door_state = :open
+		  return 'door creaks open'
+    else 
+      return 'door is already open'
+    end
   end
   def close place, quester
     if open?
       @door_state = :closed
-	  return 'door creaks closed'
+	    return 'door creaks closed'
     else 
       return 'door is already closed'
     end
@@ -35,7 +33,6 @@ class Door < BoundaryObject
   end
   
   def unlock place, quester
-    return 'unlocking door ...'
     if closed?
       if locked?
         if not quester.possessions[:key]
@@ -44,10 +41,10 @@ class Door < BoundaryObject
         @lock_state = :unlocked
         return 'door unlocks'
       else
-        return 'door already unlocked'
+        return 'door is already unlocked'
       end
     else
-      return 'door is not closed'
+      return 'door is already open'
     end
   end
   

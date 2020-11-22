@@ -30,41 +30,41 @@ class Quester
     end
   end
   
-  # get an object
-  def get object, current_place
-    return 'get what?' if not object 
-    if current_place.items[object.to_sym]
-      @possessions[object.to_sym] = current_place.items[object.to_sym]
-      current_place.items.delete object.to_sym
-      #if @possessions[object.to_sym].respond_to? :get
-      #  @possessions[object.to_sym].get
-        @possessions[object.to_sym].achieved = true
+  # get an entity
+  def get entity, current_place
+    return 'get what?' if not entity 
+    if current_place.items[entity.to_sym]
+      @possessions[entity.to_sym] = current_place.items[entity.to_sym]
+      current_place.items.delete entity.to_sym
+      #if @possessions[entity.to_sym].respond_to? :get
+      #  @possessions[entity.to_sym].get
+        @possessions[entity.to_sym].achieved = true
       #end
     else
-      if @possessions[object.to_sym]
-        return "you already have #{object}"
+      if @possessions[entity.to_sym]
+        return "you already have #{entity}"
       else
-        if current_place.fixtures[object.to_sym]
-          return "you can not pick up #{object}"
+        if current_place.fixtures[entity.to_sym]
+          return "you can not pick up #{entity}"
         else
-          return "there is no #{object} here"
+          return "there is no #{entity} here"
         end
       end
     end
   end
   
-  def drop object, current_place
-    if @possessions[object.to_sym]
-      current_place.items[object.to_sym] = @possessions[object.to_sym]
-      @possessions[object.to_sym].achieved = false
-      @possessions.delete object.to_sym
+  def drop entity, current_place
+    if @possessions[entity.to_sym]
+      current_place.items[entity.to_sym] = @possessions[entity.to_sym]
+      @possessions[entity.to_sym].achieved = false
+      @possessions.delete entity.to_sym
     else
-      return "you don't have #{object}"
+      return "you don't have #{entity}"
     end
   end
   
-  def look
-    possessions = "You have the no items"
+  def look entity, current_place
+    possessions = "You have no items"
     possessions = "You have the following items:" if @possessions.count > 0
     @possessions.each_pair do | possession,value | 
       status_msg = ''
@@ -74,16 +74,16 @@ class Quester
     return possessions
   end
 
-  def wash object, current_place
-    return 'wash what?' if not object 
-    return "there is no #{object} here" if not current_place.fixtures[object.to_sym] 
-    if current_place.fixtures[object.to_sym].respond_to? :clean
-      current_place.fixtures[object.to_sym].clean
+  def wash entity, current_place
+    return 'wash what?' if not entity 
+    return "there is no #{entity} here" if not current_place.fixtures[entity.to_sym] 
+    if current_place.fixtures[entity.to_sym].respond_to? :clean
+      current_place.fixtures[entity.to_sym].clean
     end
   end
    
  
-  def move object, current_place
+  def move entity, current_place
     if facing_boundary.can_move_through?
       @place = @place.send("#{facing_direction}_location".to_sym)
     else
@@ -91,33 +91,33 @@ class Quester
     end
   end 
 
-  def north object, current_place
-    dbg "quester#north, object #{object}, current_place #{current_place}"
+  def north entity, current_place
+    dbg "quester#north, entity #{entity}, current_place #{current_place}"
     @facing_direction = @directions[:north]
   end
-  def south object, current_place
-    dbg "quester#south, object #{object}, current_place #{current_place}"
+  def south entity, current_place
+    dbg "quester#south, entity #{entity}, current_place #{current_place}"
     @facing_direction = @directions[:south]
   end
-  def east object, current_place
-    dbg "quester#east, object #{object}, current_place #{current_place}"
+  def east entity, current_place
+    dbg "quester#east, entity #{entity}, current_place #{current_place}"
     @facing_direction = @directions[:east]
   end
-  def west object, current_place
-    dbg "quester#west, object #{object}, current_place #{current_place}"
+  def west entity, current_place
+    dbg "quester#west, entity #{entity}, current_place #{current_place}"
     @facing_direction = @directions[:west]
   end
   
-  def around object, current_place
-    dbg "quester#around, object #{object}, current_place #{current_place}"
+  def around entity, current_place
+    dbg "quester#around, entity #{entity}, current_place #{current_place}"
     @facing_direction = @directions[@compass_points[@facing_direction]-2]
   end
-  def left object, current_place
-    dbg "quester#left, object #{object}, current_place #{current_place}"
+  def left entity, current_place
+    dbg "quester#left, entity #{entity}, current_place #{current_place}"
     @facing_direction = @directions[@compass_points[@facing_direction]+1]
   end
-  def right object, current_place
-    dbg "quester#right, object #{object}, current_place #{current_place}"
+  def right entity, current_place
+    dbg "quester#right, entity #{entity}, current_place #{current_place}"
     @facing_direction = @directions[@compass_points[@facing_direction]-1]
   end
   
