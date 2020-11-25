@@ -278,35 +278,19 @@ class Places
   def validate
     @locations.each do | id, place_object |
       # all places need four boundaries, and each boundary has a description
-      # all places have four boundary locations, but some are end boundaries - if not an end boundary location then it's another place that will have a description
+      # all places have four boundary locations, but some are end boundaries - if not an end boundary location then it's a link to
+      #   another place that will have a description
       
       check place_object, 'north'
       check place_object, 'south'
       check place_object, 'east'
       check place_object, 'west'
-      #raise "places#validate error #{place_object.id} north_boundary" unless place_object.north_boundary.description
-      #if !(place_object.respond_to? 'north_location'.to_sym)
-      #  raise "places#validate error #{place_object.id} north_location did not respond"
-      #else
-      #  raise "places#validate error #{place_object.id} north_location not end_boundary and has no description" if !place_object.north_boundary.end_boundary and !place_object.north_location.description 
-      #end
-      
-      #puts "#{id} south"
-      #raise "places#validate error #{place_object.id} south_boundary" unless place_object.south_boundary.description
-      #raise "places#validate error #{place_object.id} south_location" if !place_object.south_boundary.end_boundary and !(place_object.respond_to? 'south_location'.to_sym)
-      
-      #puts "#{id} east"
-      #raise "places#validate error #{place_object.id} east_boundary" unless place_object.east_boundary.description
-      #raise "places#validate error #{place_object.id} east_location" if !place_object.east_boundary.end_boundary and !(place_object.respond_to? 'east_location'.to_sym)
-      
-      #puts "#{id} west"
-      #raise "places#validate error #{place_object.id} west_boundary" unless place_object.west_boundary.description
-      #raise "places#validate error #{place_object.id} west_location" if !place_object.west_boundary.end_boundary and !(place_object.respond_to? 'west_location'.to_sym)
+
     end
   end
     
   def check place_object, compass_point
-    puts "#{place_object.id} #{compass_point}" if DBG
+    puts "#{place_object.id} #{compass_point}" if defined? DBG and DBG
     raise "places#validate error #{place_object.id} #{compass_point}_boundary missing description" unless place_object.send("#{compass_point}_boundary".to_sym).description
     if !(place_object.respond_to? "#{compass_point}_location".to_sym)
       raise "places#validate error #{place_object.id} #{compass_point}_location would not respond"

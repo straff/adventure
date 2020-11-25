@@ -18,6 +18,7 @@ module AdventureHelper
   end
   
   def get_action_entity response
+    return '' if not response or response.length == 0 or response.strip.empty?
     splitted = response.split(' ')
     action = splitted[0]
     object = splitted[1] if splitted.count >= 2
@@ -44,7 +45,7 @@ module AdventureHelper
   end	
     
   def dbg (msg)
-    if defined? DBG 
+    if defined? DBG and DBG
       puts "DBG: #{msg}"
     end
   end

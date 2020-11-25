@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    adventure (0.0.10)
+    adventure (0.0.12)
 
 GEM
   specs:

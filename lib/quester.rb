@@ -39,6 +39,7 @@ class Quester
       #if @possessions[entity.to_sym].respond_to? :get
       #  @possessions[entity.to_sym].get
         @possessions[entity.to_sym].achieved = true
+        return
       #end
     else
       if @possessions[entity.to_sym]
@@ -58,6 +59,7 @@ class Quester
       current_place.items[entity.to_sym] = @possessions[entity.to_sym]
       @possessions[entity.to_sym].achieved = false
       @possessions.delete entity.to_sym
+      return
     else
       return "you don't have #{entity}"
     end
@@ -86,6 +88,7 @@ class Quester
   def move entity, current_place
     if facing_boundary.can_move_through?
       @place = @place.send("#{facing_direction}_location".to_sym)
+      return
     else
       return facing_boundary.no_move_reason
     end
@@ -94,31 +97,38 @@ class Quester
   def north entity, current_place
     dbg "quester#north, entity #{entity}, current_place #{current_place}"
     @facing_direction = @directions[:north]
+    return
   end
   def south entity, current_place
     dbg "quester#south, entity #{entity}, current_place #{current_place}"
     @facing_direction = @directions[:south]
+    return
   end
   def east entity, current_place
     dbg "quester#east, entity #{entity}, current_place #{current_place}"
     @facing_direction = @directions[:east]
+    return
   end
   def west entity, current_place
     dbg "quester#west, entity #{entity}, current_place #{current_place}"
     @facing_direction = @directions[:west]
+    return
   end
   
   def around entity, current_place
     dbg "quester#around, entity #{entity}, current_place #{current_place}"
     @facing_direction = @directions[@compass_points[@facing_direction]-2]
+    return
   end
   def left entity, current_place
     dbg "quester#left, entity #{entity}, current_place #{current_place}"
     @facing_direction = @directions[@compass_points[@facing_direction]+1]
+    return
   end
   def right entity, current_place
     dbg "quester#right, entity #{entity}, current_place #{current_place}"
     @facing_direction = @directions[@compass_points[@facing_direction]-1]
+    return
   end
   
   def setup_direction_mapping

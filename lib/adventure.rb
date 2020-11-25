@@ -50,6 +50,7 @@ class Adventure
       quester_action_response = self.quester.send(action.to_sym, entity, current_place)
       command_results << quester_action_response
       quester_responded = true
+      dbg "quester responded"
     else
       dbg "quester did not respond - #{self.quester.name}"
       quester_responded = false
@@ -60,6 +61,7 @@ class Adventure
       place_action_result = current_place.send(action.to_sym, entity) 
       command_results << place_action_result
       current_place_responded = true
+      dbg "current_place responded"
     else
       dbg "current_place did not respond - #{current_place.description}" 
       current_place_responded = false
@@ -70,6 +72,7 @@ class Adventure
       facing_boundary_action_results = facing_boundary.send(action.to_sym, current_place, quester) 
       command_results << facing_boundary_action_results
       facing_boundary_responded = true
+      dbg "facing_boundary responded"
     else
       dbg "facing_boundary did not respond - #{facing_boundary.description}" 
       facing_boundary_responded = false

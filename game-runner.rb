@@ -53,7 +53,7 @@ while true
   current_place.items.each_pair {| item,value | puts "\t#{value.to_s} #{value.status_description}" }
   current_place.fixtures.each_pair {| fixture,value | puts "\t#{value.to_s} #{value.status_description}" }
   
-  puts "---------------------------\n"
+  puts "---------------------------\n\n"
   command = STDIN.gets.chomp
   
   #if response.length == 0; puts 'say something'; next; end
