@@ -1,4 +1,5 @@
 
+
 class Adventure
 	require_relative './place/places.rb'
 	require_relative './adventure_helper.rb'
