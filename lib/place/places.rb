@@ -1,9 +1,9 @@
-require_relative './Place.rb'
-require_relative '../boundary/Door.rb'
-require_relative '../boundary/Cupboard.rb'
-require_relative '../boundary/Window.rb'
-require_relative '../boundary/Wall.rb'
-require_relative '../boundary/Way.rb'
+require_relative './place.rb'
+require_relative '../boundary/door.rb'
+require_relative '../boundary/cupboard.rb'
+require_relative '../boundary/window.rb'
+require_relative '../boundary/wall.rb'
+require_relative '../boundary/way.rb'
 
 class Places
 

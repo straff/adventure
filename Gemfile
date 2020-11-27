@@ -1,1 +1,1 @@
-gem "adventurous-hilda", path: "C:/Users/Straff/dev/adventure/"
+gem "adventure", path: "C:/Users/Straff/dev/adventure/"

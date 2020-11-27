@@ -15,7 +15,9 @@ else
 end
 
 if viagem
-  gem 'adventure'  #, path: 'C:/Users/Straff/dev/adventure/gems'
+  #gem 'adventure'  #, path: 'C:/Users/Straff/dev/adventure/gems'
+  gem 'adventure', :git => "https://github.com/straff/adventure", :branch => "master" 
+
   puts "Running via gem version #{Gem.loaded_specs['adventure'].version}"
   require 'adventure.rb'
 else

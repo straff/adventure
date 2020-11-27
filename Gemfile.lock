@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    adventurous-hilda (0.0.14)
+    adventure (0.0.16)
 
 GEM
   specs:
@@ -10,7 +10,7 @@ PLATFORMS
   x64-mingw32
 
 DEPENDENCIES
-  adventurous-hilda!
+  adventure!
 
 BUNDLED WITH
    2.1.4
