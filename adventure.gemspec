@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name        = 'adventure'
-  s.version     = '0.0.19'
+  s.version     = '0.0.20'
   s.date        = '2020-11-27'
   s.summary     = "adventure - an IF genre game"
   s.description = "An adventrue app as a gem usable on command-line and rails app"

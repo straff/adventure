@@ -20,10 +20,10 @@ class FixtureItems
   def put_fixtures_in_locations places
     places.locations['porch'].fixtures[:planter]         = @items[:planter]
     places.locations['foyer'].fixtures[:wooden_shelf]        = @items[:wooden_shelf]
- #   places.locations['short_hall'].east_boundary.fixtures[:recycle_bin] = @items[:recycle_bin]
- #   places.locations['kitchen'].fixtures[:dishes]            = @items[:dishes]
- #   places.locations['craft_room'].fixtures[:sewing_machine] = @items[:sewing_machine]
- #   places.locations['bedroom_k'].fixtures[:safe]            = @items[:safe]
+    places.locations['short_hall'].east_boundary.fixtures[:recycle_bin] = @items[:recycle_bin]
+    places.locations['kitchen'].fixtures[:dishes]            = @items[:dishes]
+    places.locations['craft_room'].fixtures[:sewing_machine] = @items[:sewing_machine]
+    places.locations['bedroom_k'].fixtures[:safe]            = @items[:safe]
   end
 
 end

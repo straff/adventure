@@ -14,6 +14,7 @@ class Quester
   attr_accessor :possessions
   
   def initialize name, age, facing_direction=:west, place=nil
+  #def initialize name:, age:, facing_direction: :west, place: nil
     @name = name
     @age = age
     @facing_direction = facing_direction
