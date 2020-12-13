@@ -1,16 +1,13 @@
 require_relative './fixture.rb'
 
 class Safe < Fixture
-
-  attr_reader :name
-  attr_reader :status
   
   LOCKED = true
   UNLOCKED = false
   
-  def initialize name
-    @name = name
+  def initialize name:, description:
     @status = LOCKED
+    super name: name, description: description
   end
     
   def unlock

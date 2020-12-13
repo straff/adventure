@@ -109,7 +109,7 @@ class Places
     bathroom2.north_boundary = long_hall3.south_boundary
     add_to_locations bathroom2
     
-    long_hall4 = Place.new id: 'long_hall4', description: 'a hallway'
+    long_hall4 = Place.new id: 'long_hall_4', description: 'a hallway'
     long_hall4.east_boundary = long_hall3.west_boundary
     long_hall4.south_boundary = Door.new description: 'wooden door', door_state: :open, lock_state: :unlocked # Calypso bedroom
     long_hall4.west_boundary = Door.new description: 'wooden door', door_state: :open, lock_state: :unlocked  # Phoebe bedroom

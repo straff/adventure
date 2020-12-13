@@ -2,10 +2,9 @@ require_relative './fixture.rb'
 
 class SewingMachine < Fixture
 
-  attr_reader :name
   
-  def initialize name
-    @name = name
+  def initialize name:, description:
+    super name: name, description: description
   end
   
   def auto_action_fixture  

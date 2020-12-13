@@ -1,18 +1,22 @@
 class Fixture
 
   attr_reader :name
-  attr_reader :status
-  attr_reader :status_description
-  #attr_accessor :achieved
+  attr_reader :description
+  attr_accessor :status
+  attr_accessor :status_description
+  attr_accessor :achieved
   
-  def initialize name:
+  def initialize name:, description:, status_description: nil
     @name = name
-    @status_description = ''
+    @description = description
+    @status = false
+    @status_description = status_description
     @achieved = false
   end
   
   def to_s
-    return @name
+    return "#{@description}" unless @status_description
+    return "#{@description} - #{@status_description}" 
   end
   
   def achieved?

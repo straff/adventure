@@ -47,7 +47,7 @@ class Quester
         return "you already have #{entity}"
       else
         if current_place.fixtures[entity.to_sym]
-          return "you can not pick up #{entity}"
+          return "you can not pick up #{current_place.fixtures[entity.to_sym]}"
         else
           return "there is no #{entity} here"
         end

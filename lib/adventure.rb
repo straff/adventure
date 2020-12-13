@@ -28,14 +28,15 @@ class Adventure
 
 	  @fixture_items = FixtureItems.new
 	  @fixture_items.put_fixtures_in_locations places
-
-	  @mission = Mission.new ([ :key, :dishes, :chocolate_eggs, :screwdriver ]), 'Your mission is to collect a key, wash the dishes, collect a screwdriver, collect chocolate eggs. Sounds easy.'
-	  #@mission.questers[0].push quester
-	  @mission.fixtures = fixture_items
 	  
 	  @questers = Hash.new
 	  @quester = Quester.new name, age, facing_direction, places.locations['porch']
 	  @questers[0] = @quester
+
+	  @mission = Mission.new ([ :key, :dishes, :chocolate_eggs, :screwdriver ]), 'Your mission is to collect a key, wash the dishes, collect a screwdriver, collect chocolate eggs. Sounds easy.'
+	  @mission.questers[0] = quester
+	  @mission.fixtures = fixture_items
+
 	end
   
   def do_player_command command:, quester:, current_place:, facing_boundary:

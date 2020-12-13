@@ -34,7 +34,7 @@ else
 end
 #adventure.quester = Quester.new 'Tom', 12, :west, places.locations['porch']
 
-adventure.mission.show
+puts "#{adventure.mission.show}"
 
 while true
   facing_boundary = adventure.quester.facing_boundary ? adventure.quester.facing_boundary : facing_boundary

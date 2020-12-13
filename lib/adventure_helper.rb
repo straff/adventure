@@ -35,6 +35,7 @@ module AdventureHelper
     action = 'left' if 'left'.match("^#{action}")
     action = 'right' if 'right'.match("^#{action}")
     action = 'wash' if 'clean'.match("^#{action}")
+    object = 'dog_kennel' if 'kennel'.match("^#{object}")
     return action, object
   end
   

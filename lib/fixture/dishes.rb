@@ -5,20 +5,13 @@ class Dishes < Fixture
   CLEAN = false
   DIRTY = true
   
-  def initialize name
-    @name = name
-    @status = DIRTY
-    @status_description = '- dirty'
-    @achieved = false
+  def initialize name:, description:
+    super name: name, description: description, status_description: 'dirty'
   end
-    
-  def to_s
-    return @name
-  end
-  
+      
   def clean
     @status = CLEAN
-    @status_description = '- clean'
+    @status_description = 'clean'
     @achieved = true
   end
     
